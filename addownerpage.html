@@ -3,7 +3,7 @@
 
 <head>
     <title>
-        Pet Clinic
+        Pet Clinic - Add Owner
     </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -12,33 +12,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
-
 <body>
-    <div class="banner"></div>
-    <div class="container blocks">
-        <h1>Pet Clinic</h1>
-        <table class="table table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">City</th>
-                    <th scope="col">Telephone</th>
-                    <th scope="col">Pets</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-        <button onclick="addOwnerbtn()" class="btn btn-outline-danger">Add Owner</button>
-    </div>
+        <div class="banner"></div>
+        <div class="container blocks">
+            <h1>Add Owner</h1>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Telephone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input class="form-control" id="ownername" type="text" placeholder="Name"></td>
+                        <td><input class="form-control" id="owneraddress" type="text" placeholder="Address"></td>
+                        <td><input class="form-control" id="ownercity" type="text" placeholder="City"></td>
+                        <td><input class="form-control" id="ownertelephone" type="tel" placeholder="Telephone"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="submit()" class="btn btn-outline-danger">Submit</button>
+        </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
