@@ -3,7 +3,7 @@ const req = new XMLHttpRequest();
 const apiLink = "http://35.240.3.220:9966/petclinic/api/owners";
 
     req.onload = () => {
-        if (xhr.status ==200) {
+        if (req.status ==200) {
             console.log("200");
         } 
         else {
