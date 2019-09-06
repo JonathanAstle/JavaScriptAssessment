@@ -123,6 +123,7 @@ function handleSubmit(form){
 
     console.log(ownerObj);
     req.onload = () => {
+        location.href = 'index.html';
     };
     req.open('POST', url);
     req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
