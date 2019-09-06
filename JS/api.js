@@ -105,6 +105,33 @@ function buttonHandle(){
     createTableOwner();
 }
 
+function handleSubmit(form){
+
+    let ownerObj = {};
+
+    for(let element of form.elements){
+        if (element.id) {
+        ownerObj[element.id] = element.value;
+        console.log(element);
+        
+    }
+    }
+
+    owner['id'] = 12;
+
+    ownerObj['pets'] = [];
+
+    console.log(ownerObj);
+    req.onload = () => {
+    };
+    req.open('POST', url);
+    req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    req.send(JSON.stringify(ownerObj));
+    console.log(JSON.stringify(ownerObj));
+    return false;
+
+}
+
 
 
 
