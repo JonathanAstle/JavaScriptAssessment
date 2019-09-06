@@ -25,15 +25,12 @@ const apiLink = "http://35.240.3.220:9966/petclinic/api/owners";
 
     req.onload = () => {
         if (req.status ==200) {
-            console.log("200");
         } 
         else {
             reject("Request Failed");
         }
         //console.log(req.responseText);
         data = JSON.parse(req.response);
-        console.log(data);
-        dataCleaner();
         //let data = JSON.parse(req.responseText);
     }
 
@@ -43,19 +40,21 @@ function makeRequest(type, link, obj){
     req.send(obj);
 }
 
-function getData(type, link){
-    req.open(type, link);
+function getData(){
+    req.open('GET', apiLink, false);
     req.send();
-    console.log("hitting this");
 }
 
 function dataCleaner(){
+
+    console.log("cleaning this");
     for(let person in data){
         ownerId.push(data[person].id);
         ownerFirst.push(data[person].firstName);
         ownerLast.push(data[person].lastName);
         ownerAddress.push(data[person].address);
         ownerTelephone.push(data[person].telephone);
+        ownerCity.push(data[person].city)
     }
     owner = [ownerId, ownerFirst, ownerLast, ownerAddress, ownerCity, ownerTelephone, pet];
 }
@@ -69,6 +68,9 @@ function addToOwner()
 }
 
 function createTableOwner(){
+
+    console.log("calling");
+
     for(let person in data){
     let table = document.createElement('tr');
 
@@ -95,6 +97,12 @@ function createTableOwner(){
 
     tableBody.appendChild(table);
     }
+}
+
+function buttonHandle(){
+    getData();
+    dataCleaner();
+    createTableOwner();
 }
 
 
