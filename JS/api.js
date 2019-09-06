@@ -1,13 +1,14 @@
 const req = new XMLHttpRequest();
 
 var data;
-var table = document.getElementById('table-body');
+var tableBody = document.getElementById('table-body');
 
 var ownerId = new Array();
 var ownerFirst = new Array();
 var ownerLast = new Array();
 var ownerAddress = new Array();
 var ownerTelephone = new Array();
+var ownerCity = new Array();
 
 var petId = new Array();
 var petName = new Array();
@@ -24,15 +25,12 @@ const apiLink = "http://35.240.3.220:9966/petclinic/api/owners";
 
     req.onload = () => {
         if (req.status ==200) {
-            console.log("200");
         } 
         else {
             reject("Request Failed");
         }
         //console.log(req.responseText);
         data = JSON.parse(req.response);
-        console.log(data);
-        dataCleaner();
         //let data = JSON.parse(req.responseText);
     }
 
@@ -42,21 +40,23 @@ function makeRequest(type, link, obj){
     req.send(obj);
 }
 
-function getData(type, link){
-    req.open(type, link);
+function getData(){
+    req.open('GET', apiLink, false);
     req.send();
-    console.log("hitting this");
 }
 
 function dataCleaner(){
+
+    console.log("cleaning this");
     for(let person in data){
         ownerId.push(data[person].id);
         ownerFirst.push(data[person].firstName);
         ownerLast.push(data[person].lastName);
         ownerAddress.push(data[person].address);
         ownerTelephone.push(data[person].telephone);
+        ownerCity.push(data[person].city)
     }
-    owner = [ownerId, ownerFirst, ownerLast, ownerAddress, ownerTelephone, pet];
+    owner = [ownerId, ownerFirst, ownerLast, ownerAddress, ownerCity, ownerTelephone, pet];
 }
 
 function addToOwner()
@@ -68,7 +68,68 @@ function addToOwner()
 }
 
 function createTableOwner(){
+
+    console.log("calling");
+
+    for(let person in data){
+    let table = document.createElement('tr');
+
     let id = document.createElement('td');
+    id.innerText = ownerId[person];
+    table.appendChild(id);
+
+    let name = document.createElement('td');
+    name.innerText = ownerFirst[person];
+    name.innerText +=  " " + ownerLast[person];
+    table.appendChild(name);
+
+    let addy = document.createElement('td');
+    addy.innerText = ownerAddress[person];
+    table.appendChild(addy);
+
+    let city  = document.createElement('td');
+    city.innerText = ownerCity[person];
+    table.appendChild(city);
+
+    let phone = document.createElement('td');
+    phone.innerText = ownerTelephone[person];
+    table.appendChild(phone);
+
+    tableBody.appendChild(table);
+    }
+}
+
+function buttonHandle(){
+    getData();
+    dataCleaner();
+    createTableOwner();
+}
+
+function handleSubmit(form){
+
+    let ownerObj = {};
+
+    for(let element of form.elements){
+        if (element.id) {
+        ownerObj[element.id] = element.value;
+        console.log(element);
+        
+    }
+    }
+
+    owner['id'] = 12;
+
+    ownerObj['pets'] = [];
+
+    console.log(ownerObj);
+    req.onload = () => {
+    };
+    req.open('POST', url);
+    req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    req.send(JSON.stringify(ownerObj));
+    console.log(JSON.stringify(ownerObj));
+    return false;
+
 }
 
 

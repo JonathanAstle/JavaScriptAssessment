@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 
-<body>
+<body onload="getData(), dataCleaner(), createTableOwner()">
     <div class="banner"></div>
     <div class="container blocks">
         <h1>Pet Clinic</h1>
@@ -28,15 +28,8 @@
                     <th scope="col">Pets</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Jon Johnson</td>
-                    <td>Johnatown</td>
-                    <td>Jonnytown</td>
-                    <td>911</td>
-                    <td>Jonny</td>
-                </tr>
+            <tbody id="table-body">
+                
             </tbody>
         </table>
         <button onclick="addOwnerbtn()" class="btn btn-outline-danger">Add Owner</button>
