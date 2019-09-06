@@ -1,0 +1,6 @@
+.banner{
+    background-image: url("resources/images/piggies.jfif");
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
