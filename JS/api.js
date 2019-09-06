@@ -1,13 +1,14 @@
 const req = new XMLHttpRequest();
 
 var data;
-var table = document.getElementById('table-body');
+var tableBody = document.getElementById('table-body');
 
 var ownerId = new Array();
 var ownerFirst = new Array();
 var ownerLast = new Array();
 var ownerAddress = new Array();
 var ownerTelephone = new Array();
+var ownerCity = new Array();
 
 var petId = new Array();
 var petName = new Array();
@@ -56,7 +57,7 @@ function dataCleaner(){
         ownerAddress.push(data[person].address);
         ownerTelephone.push(data[person].telephone);
     }
-    owner = [ownerId, ownerFirst, ownerLast, ownerAddress, ownerTelephone, pet];
+    owner = [ownerId, ownerFirst, ownerLast, ownerAddress, ownerCity, ownerTelephone, pet];
 }
 
 function addToOwner()
@@ -68,7 +69,32 @@ function addToOwner()
 }
 
 function createTableOwner(){
+    for(let person in data){
+    let table = document.createElement('tr');
+
     let id = document.createElement('td');
+    id.innerText = ownerId[person];
+    table.appendChild(id);
+
+    let name = document.createElement('td');
+    name.innerText = ownerFirst[person];
+    name.innerText +=  " " + ownerLast[person];
+    table.appendChild(name);
+
+    let addy = document.createElement('td');
+    addy.innerText = ownerAddress[person];
+    table.appendChild(addy);
+
+    let city  = document.createElement('td');
+    city.innerText = ownerCity[person];
+    table.appendChild(city);
+
+    let phone = document.createElement('td');
+    phone.innerText = ownerTelephone[person];
+    table.appendChild(phone);
+
+    tableBody.appendChild(table);
+    }
 }
 
 
